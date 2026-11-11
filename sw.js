@@ -1,5 +1,5 @@
 /* SIB Field Reports offline cache. Bump VERSION on every app update so phones pick it up. */
-const VERSION = 'sib-field-v1.5.0';
+const VERSION = 'sib-field-v1.6.0';
 const JSPDF = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
