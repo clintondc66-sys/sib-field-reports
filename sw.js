@@ -1,5 +1,5 @@
 /* SIB Field Reports offline cache. Bump VERSION on every app update so phones pick it up. */
-const VERSION = 'sib-field-v2.3.1';
+const VERSION = 'sib-field-v2.3.2';
 const JSPDF = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
@@ -25,7 +25,7 @@ self.addEventListener('fetch', (e) => {
   if (url.pathname.includes('/data/')) return;
   // App files: network first so updates arrive, cache when offline.
   e.respondWith(
-    fetch(e.request).then((res) => {
+    fetch(e.request, { cache: 'no-cache' }).then((res) => { // v2.3.2: always ask GitHub for the newest file (no 10-minute browser cache)
       if (res.ok) { const copy = res.clone(); caches.open(VERSION).then((c) => c.put(e.request, copy)); }
       return res;
     }).catch(() => caches.match(e.request).then((r) => r || caches.match('./index.html')))
